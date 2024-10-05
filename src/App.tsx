@@ -16,7 +16,7 @@ export const App = () => {
 
     return (
         <main
-            className={"flex flex-col justify-center h-[640px] w-[1280px] gap-[64px] px-[128px] rounded-[64px] bg-[#222222]"}>
+            className={"flex flex-col justify-center gap-[64px] px-[128px] rounded-[64px] bg-[#222222]"}>
             <div className={"flex flex-col gap-[20px]"}>
                 <p className={"font-p-regular text-[40px] text-white text-center whitespace-normal break-keep text-pretty"}>
                     "{quote[0]}"
