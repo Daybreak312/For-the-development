@@ -16,9 +16,9 @@ export const App = () => {
 
     return (
         <main
-            className={"flex flex-col justify-center gap-[64px] rounded-[64px] bg-[#222222]"}>
+            className={"flex flex-col justify-center w-[500px] gap-[30px] rounded-[64px] bg-[#222222]"}>
             <div className={"flex flex-col gap-[20px]"}>
-                <p className={"font-p-regular text-[24px] text-white text-center whitespace-normal break-keep text-pretty"}>
+                <p className={"font-p-medium text-[24px] text-white text-center whitespace-normal break-keep text-pretty"}>
                     "{quote[0]}"
                 </p>
                 <p className={"font-p-medium text-[20px] text-white text-right"}>
@@ -26,15 +26,15 @@ export const App = () => {
                 </p>
             </div>
             <div className={"flex flex-col gap-[10px]"}>
-                <p className={"font-p-medium text-[24px] text-white text-center"}>
+                <p className={"font-p-medium text-[22px] text-white text-center"}>
                     {getCurrentDateWithFormat()}
                 </p>
-                <p className={"font-p-medium text-[24px] text-white text-center"}>
+                <p className={"font-p-medium text-[22px] text-white text-center"}>
                     <span className={"text-[#FF7F11]"}>{cal.percentage}</span>% 진행됨, <span
                     className={"text-[#FF7F11]"}>{cal.daysRemaining}</span>일 남음.
                 </p>
                 <div
-                    className={"flex justify-center items-center p-[10px] h-[80px] w-[500px] bg-[#333333] rounded-[100px]"}>
+                    className={"flex justify-center items-center p-[10px] h-[80px] w-full bg-[#333333] rounded-[100px]"}>
                     <div
                         className={"flex justify-start items-center p-[10px] h-full w-full bg-[#222222] rounded-[100px]"}>
                         <div className={"flex justify-start items-center h-full w-full rounded-[100px]"}>
