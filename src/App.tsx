@@ -10,8 +10,6 @@ export const App = () => {
         setQuote(getRandomQuote);
     }
 
-    setInterval(setQuoteRandom, 60000);
-
     function keyDownEvent(e: KeyboardEvent) {
         document.removeEventListener("keydown", keyDownEvent)
         e.stopPropagation();
@@ -30,6 +28,8 @@ export const App = () => {
 
         addKeyPressEventListener();
         document.addEventListener("keyup", addKeyPressEventListener);
+
+        setInterval(setQuoteRandom, 60000);
     }, []);
 
     return (
