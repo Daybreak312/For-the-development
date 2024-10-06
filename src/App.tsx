@@ -1,53 +1,24 @@
-import {getRandomQuote} from "./RandomQuote.tsx";
-import {calculateProgressAndDaysRemaining, getCurrentDateWithFormat} from "./Date.tsx";
-import {useEffect, useState} from "react";
+import {calculateProgressAndDaysRemaining, Time} from "./Time.tsx";
+import {useEffect} from "react";
+import {Quote} from "./Quote.tsx";
 
 export const App = () => {
-    const [quote, setQuote] = useState(getRandomQuote);
     const remaining = calculateProgressAndDaysRemaining();
-
-    function setQuoteRandom() {
-        setQuote(getRandomQuote);
-    }
-
-    function keyDownEvent(e: KeyboardEvent) {
-        document.removeEventListener("keydown", keyDownEvent)
-        e.stopPropagation();
-        setQuoteRandom();
-    }
-
-    function addKeyPressEventListener() {
-        document.addEventListener("keydown", keyDownEvent);
-    }
 
     useEffect(() => {
         const progressBar = document.getElementById("progress-bar")!;
         const width = (progressBar.parentElement!.offsetWidth / 100 * remaining.percentage);
 
         progressBar.style.width = (progressBar.offsetWidth > width ? progressBar.offsetWidth : width) + "px";
-
-        addKeyPressEventListener();
-        document.addEventListener("keyup", addKeyPressEventListener);
-
-        setInterval(setQuoteRandom, 60000);
     }, []);
 
     return (
         <main
             autoFocus={true}
             className={"flex flex-col justify-center     w-[500px] gap-[30px] rounded-[64px] bg-[#222222]"}>
-            <div className={"flex flex-col gap-[20px]"}>
-                <p className={"font-p-medium text-[24px] text-white text-center whitespace-normal break-keep text-pretty"}>
-                    "{quote[0]}"
-                </p>
-                <p className={"font-p-medium text-[20px] text-white text-right"}>
-                    - {quote[1]}
-                </p>
-            </div>
+            <Quote></Quote>
             <div className={"flex flex-col gap-[10px]"}>
-                <p className={"font-p-medium text-[22px] text-white text-center"}>
-                    {getCurrentDateWithFormat()}
-                </p>
+                <Time></Time>
                 <p className={"font-p-medium text-[22px] text-white text-center"}>
                     <span className={"text-[#FF7F11]"}>{remaining.percentage}</span>% 진행됨, <span
                     className={"text-[#FF7F11]"}>{remaining.daysRemaining}</span>일 남음.
