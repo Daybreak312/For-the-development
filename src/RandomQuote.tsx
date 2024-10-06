@@ -101,6 +101,22 @@ const quotes = [
     ]
 ]
 
+let deployedQuotes: string[][] = []
+
 export const getRandomQuote = () => {
-    return quotes[Math.floor(Math.random() * quotes.length)]
+    if (quotes.length === deployedQuotes.length) {
+        deployedQuotes = []
+    }
+
+    let deploy = anyQuote();
+    while (deployedQuotes.includes(deploy)) {
+        deploy = anyQuote();
+    }
+
+    deployedQuotes.push(deploy);
+    return deploy;
+}
+
+const anyQuote = () => {
+    return quotes[Math.floor(Math.random() * quotes.length)];
 }
