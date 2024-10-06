@@ -1,22 +1,36 @@
 import {getRandomQuote} from "./RandomQuote.tsx";
 import {calculateProgressAndDaysRemaining, getCurrentDateWithFormat} from "./Date.tsx";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 export const App = () => {
-
-    const quote = getRandomQuote();
+    const [quote, setQuote] = useState(getRandomQuote);
     const cal = calculateProgressAndDaysRemaining();
+
+    function keyDownEvent(e: KeyboardEvent) {
+        document.removeEventListener("keydown", keyDownEvent)
+        e.stopPropagation();
+        if (e.key === " ") {
+            setQuote(getRandomQuote);
+        }
+    }
+
+    function addKeyPressEventListener() {
+        document.addEventListener("keydown", keyDownEvent);
+    }
 
     useEffect(() => {
         const progressBar = document.getElementById("progress-bar")!;
         const width = (progressBar.parentElement!.offsetWidth / 100 * cal.percentage);
 
         progressBar.style.width = (progressBar.offsetWidth > width ? progressBar.offsetWidth : width) + "px";
+
+        addKeyPressEventListener();
+        document.addEventListener("keyup", addKeyPressEventListener);
     }, []);
 
     return (
         <main
-            className={"flex flex-col justify-center w-[500px] gap-[30px] rounded-[64px] bg-[#222222]"}>
+            className={"flex flex-col justify-center     w-[500px] gap-[30px] rounded-[64px] bg-[#222222]"}>
             <div className={"flex flex-col gap-[20px]"}>
                 <p className={"font-p-medium text-[24px] text-white text-center whitespace-normal break-keep text-pretty"}>
                     "{quote[0]}"
@@ -38,7 +52,8 @@ export const App = () => {
                     <div
                         className={"flex justify-start items-center p-[8px] h-full w-full bg-[#222222] rounded-[100px]"}>
                         <div className={"flex justify-start items-center h-full w-full rounded-[100px]"}>
-                            <div id={"progress-bar"} className={"overflow-hidden h-full w-[100px] bg-[#FF7F11] rounded-[100px]"}>
+                            <div id={"progress-bar"}
+                                 className={"overflow-hidden h-full w-[100px] bg-[#FF7F11] rounded-[100px]"}>
                                 <div className={"h-[30%] bg-[#FF8923]"}></div>
                             </div>
                         </div>
