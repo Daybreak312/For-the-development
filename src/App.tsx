@@ -4,14 +4,18 @@ import {useEffect, useState} from "react";
 
 export const App = () => {
     const [quote, setQuote] = useState(getRandomQuote);
-    const cal = calculateProgressAndDaysRemaining();
+    const remaining = calculateProgressAndDaysRemaining();
+
+    function setQuoteRandom() {
+        setQuote(getRandomQuote);
+    }
+
+    setInterval(setQuoteRandom, 60000);
 
     function keyDownEvent(e: KeyboardEvent) {
         document.removeEventListener("keydown", keyDownEvent)
         e.stopPropagation();
-        if (e.key === " ") {
-            setQuote(getRandomQuote);
-        }
+        setQuoteRandom();
     }
 
     function addKeyPressEventListener() {
@@ -20,7 +24,7 @@ export const App = () => {
 
     useEffect(() => {
         const progressBar = document.getElementById("progress-bar")!;
-        const width = (progressBar.parentElement!.offsetWidth / 100 * cal.percentage);
+        const width = (progressBar.parentElement!.offsetWidth / 100 * remaining.percentage);
 
         progressBar.style.width = (progressBar.offsetWidth > width ? progressBar.offsetWidth : width) + "px";
 
@@ -30,6 +34,7 @@ export const App = () => {
 
     return (
         <main
+            autoFocus={true}
             className={"flex flex-col justify-center     w-[500px] gap-[30px] rounded-[64px] bg-[#222222]"}>
             <div className={"flex flex-col gap-[20px]"}>
                 <p className={"font-p-medium text-[24px] text-white text-center whitespace-normal break-keep text-pretty"}>
@@ -44,8 +49,8 @@ export const App = () => {
                     {getCurrentDateWithFormat()}
                 </p>
                 <p className={"font-p-medium text-[22px] text-white text-center"}>
-                    <span className={"text-[#FF7F11]"}>{cal.percentage}</span>% 진행됨, <span
-                    className={"text-[#FF7F11]"}>{cal.daysRemaining}</span>일 남음.
+                    <span className={"text-[#FF7F11]"}>{remaining.percentage}</span>% 진행됨, <span
+                    className={"text-[#FF7F11]"}>{remaining.daysRemaining}</span>일 남음.
                 </p>
                 <div
                     className={"flex justify-center items-center p-[7px] h-[70px] w-full bg-[#333333] rounded-[100px]"}>
