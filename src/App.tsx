@@ -24,7 +24,7 @@ export const App = () => {
                     className={"text-[#FF7F11]"}>{remaining.daysRemaining}</span>일 남음.
                 </p>
                 <div
-                    className={"flex justify-center items-center p-[7px] h-[70px] w-full bg-[#333333] rounded-[100px]"}>
+                    className={"flex justify-center items-center p-[7px] h-[60px] w-full bg-[#333333] rounded-[100px]"}>
                     <div
                         className={"flex justify-start items-center p-[8px] h-full w-full bg-[#222222] rounded-[100px]"}>
                         <div className={"flex justify-start items-center h-full w-full rounded-[100px]"}>
