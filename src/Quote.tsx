@@ -23,7 +23,7 @@ export const Quote = () => {
 
     function addKeyPressEventListener() {
         document.addEventListener("keydown", keyDownEvent);
-        intervalId = setInterval(setQuoteRandom, 10000);
+        intervalId = setInterval(setQuoteRandom, 60000);
 
         console.log(intervalId)
     }
