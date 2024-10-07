@@ -25,8 +25,6 @@ export const Quote = () => {
     useEffect(() => {
         addKeyPressEventListener();
         document.addEventListener("keyup", addKeyPressEventListener);
-
-        setIntervalId(setInterval(setQuoteRandom, 60000));
     }, []);
 
     return <div className={"flex flex-col gap-[20px]"}>
