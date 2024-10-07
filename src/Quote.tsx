@@ -4,6 +4,7 @@ import {getRandomQuote} from "./RandomQuote.tsx";
 export const Quote = () => {
 
     const [quote, setQuote] = useState(getRandomQuote);
+    let intervalId: number;
 
     function setQuoteRandom() {
         setQuote(getRandomQuote);
@@ -11,19 +12,20 @@ export const Quote = () => {
 
     function keyDownEvent(e: KeyboardEvent) {
         document.removeEventListener("keydown", keyDownEvent)
+        clearInterval(intervalId);
         e.stopPropagation();
         setQuoteRandom();
     }
-
     function addKeyPressEventListener() {
         document.addEventListener("keydown", keyDownEvent);
+        intervalId = setInterval(setQuoteRandom, 60000);
     }
 
     useEffect(() => {
         addKeyPressEventListener();
         document.addEventListener("keyup", addKeyPressEventListener);
 
-        setInterval(setQuoteRandom, 60000);
+        intervalId = setInterval(setQuoteRandom, 60000);
     }, []);
 
     return <div className={"flex flex-col gap-[20px]"}>
