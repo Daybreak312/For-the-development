@@ -9,12 +9,7 @@ export const Time = () => {
     }
 
     useEffect(() => {
-        while (true) {
-            if (new Date().getMilliseconds() < 200) {
-                setInterval(resetTime, 1000)
-                break
-            }
-        }
+        setInterval(resetTime, 200)
     }, []);
 
     return (
