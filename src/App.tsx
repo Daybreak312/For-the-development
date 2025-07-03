@@ -15,7 +15,7 @@ export const App = () => {
     return (
         <main
             autoFocus={true}
-            className={"flex flex-col justify-center     w-[500px] gap-[30px] rounded-[64px] bg-[#222222]"}>
+            className={"flex flex-col justify-center w-[500px] gap-[30px] rounded-[64px]"}>
             <Quote></Quote>
             <div className={"flex flex-col gap-[10px]"}>
                 <Time></Time>
